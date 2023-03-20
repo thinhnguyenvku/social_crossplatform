@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "135596724209",
+    "project_id": "social-crossplatform",
+    "storage_bucket": "social-crossplatform.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135596724209:android:a0c10165f7f33de1267e50",
+        "android_client_info": {
+          "package_name": "com.example.social_crossplatform"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135596724209-b9sg1jnh10u7e29qi96fblmfkibkph5c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.social_crossplatform",
+            "certificate_hash": "5dd3cacbe7b04210fde5d9ade4f6a5f65a6b7b8d"
+          }
+        },
+        {
+          "client_id": "135596724209-kddn8tg2n98vuiamk0ekr64cq2355f0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD11T3uFY8g5FBaPjrcopj-X-7hpmwZ-0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135596724209-kddn8tg2n98vuiamk0ekr64cq2355f0l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "135596724209-2pbntooj76adbfklt6ciec7maqlopd8i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.socialCrossplatform"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
