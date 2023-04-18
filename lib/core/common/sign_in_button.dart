@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:social_crossplatform/core/constants/constants.dart';
@@ -11,7 +9,7 @@ class SignInButton extends ConsumerWidget {
   const SignInButton({Key? key}) : super(key: key);
 
   void signInWithGoogle(BuildContext context, WidgetRef ref){
-    ref.read(authControllerProvider).signInWithGoogle(context);
+    ref.read(authControllerProvider.notifier).signInWithGoogle(context);
   }
 
   @override

@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -15,12 +14,12 @@ import 'package:social_crossplatform/models/user_model.dart';
 final authRepositoryProvider = Provider(
   (ref) => AuthRepository(
     firestore: ref.read(firestoreProvider),
-    auth: ref.read(authProvider), 
+    auth: ref.read(authProvider),
     googleSignIn: ref.read(googleSignInProvider),
   ),
 );
 
-class AuthRepository{
+class AuthRepository {
   final FirebaseFirestore _firestore;
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
@@ -29,14 +28,16 @@ class AuthRepository{
     required FirebaseFirestore firestore,
     required FirebaseAuth auth,
     required GoogleSignIn googleSignIn,
-  }) : 
-      _firestore = firestore,
-      _auth = auth,
-      _googleSignIn = googleSignIn;
+  })  : _firestore = firestore,
+        _auth = auth,
+        _googleSignIn = googleSignIn;
 
-      CollectionReference get _users => _firestore.collection(FirebaseConstants.usersCollection);
-  
-  FutureEither<UserModel> signInWithGoogle () async {
+  CollectionReference get _users =>
+      _firestore.collection(FirebaseConstants.usersCollection);
+
+  Stream<User?> get authStateChange => _auth.authStateChanges();
+
+  FutureEither<UserModel> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       final googleAuth = await googleUser?.authentication;
@@ -45,20 +46,23 @@ class AuthRepository{
         idToken: googleAuth?.idToken,
       );
 
-      UserCredential userCredential = await _auth.signInWithCredential(credential);
+      UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
 
-      late UserModel userModel;
-      if (userCredential.additionalUserInfo!.isNewUser){
+      UserModel userModel;
+      if (userCredential.additionalUserInfo!.isNewUser) {
         userModel = UserModel(
-          name: userCredential.user!.displayName ?? 'No Name', 
-          profilePic: userCredential.user!.photoURL ?? Constants.avatarDefault, 
-          banner: Constants.bannerDefault, 
-          uid: userCredential.user!.uid, 
-          isAuthenticated: true, 
-          karma: 0, 
+          name: userCredential.user!.displayName ?? 'No Name',
+          profilePic: userCredential.user!.photoURL ?? Constants.avatarDefault,
+          banner: Constants.bannerDefault,
+          uid: userCredential.user!.uid,
+          isAuthenticated: true,
+          karma: 0,
           awards: [],
         );
         await _users.doc(userCredential.user!.uid).set(userModel.toMap());
+      } else {
+        userModel = await getUserData(userCredential.user!.uid).first;
       }
       return right(userModel);
     } on FirebaseException catch (e) {
@@ -66,5 +70,10 @@ class AuthRepository{
     } catch (e) {
       return left(Failure(e.toString()));
     }
+  }
+
+  Stream<UserModel> getUserData(String uid) {
+    return _users.doc(uid).snapshots().map(
+        (event) => UserModel.fromMap(event.data() as Map<String, dynamic>));
   }
 }
