@@ -31,11 +31,13 @@ class MyApp extends ConsumerStatefulWidget {
 }
 
 class _MyAppState extends ConsumerState<MyApp> {
-
   UserModel? userModel;
 
   void getData(WidgetRef ref, User data) async {
-    userModel = await ref.watch(authControllerProvider.notifier).getUserData(data.uid).first;
+    userModel = await ref
+        .watch(authControllerProvider.notifier)
+        .getUserData(data.uid)
+        .first;
     ref.read(userProvider.notifier).update((state) => userModel);
     setState(() {});
   }
@@ -46,15 +48,18 @@ class _MyAppState extends ConsumerState<MyApp> {
           data: (data) => MaterialApp.router(
             debugShowCheckedModeBanner: false,
             title: 'Cross-platform Social App',
-            theme: Pallete.darkModeAppTheme,
-            routerDelegate: RoutemasterDelegate(routesBuilder: (context) {
-              if (data != null) {
-                
-                  return loggedInRoute;
-                
-              }
-              return loggedOutRoute;
-            }),
+            theme: ref.watch(themeNotifierProvider),
+            routerDelegate: RoutemasterDelegate(
+              routesBuilder: (context) {
+                if (data != null) {
+                  getData(ref, data);
+                  if (userModel != null) {
+                    return loggedInRoute;
+                  }
+                }
+                return loggedOutRoute;
+              },
+            ),
             routeInformationParser: const RoutemasterParser(),
           ),
           error: (error, stackTrace) => ErrorText(error: error.toString()),

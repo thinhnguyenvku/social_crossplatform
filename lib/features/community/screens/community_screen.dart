@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:social_crossplatform/core/common/error_text.dart';
 import 'package:social_crossplatform/core/common/loader.dart';
+import 'package:social_crossplatform/core/common/post_card.dart';
 import 'package:social_crossplatform/features/auth/controller/auth_controller.dart';
 import 'package:social_crossplatform/features/community/controller/community_controller.dart';
 import 'package:social_crossplatform/models/community_model.dart';
@@ -18,6 +19,10 @@ class CommunityScreen extends ConsumerWidget {
 
   void navigateToModTools(BuildContext context){
     Routemaster.of(context).push('/mod-tools/$name');
+  }
+
+  void joinCommunity(WidgetRef ref, Community community, BuildContext context){
+    ref.read(communityControllerProvider.notifier).joinCommunity(community, context);
   }
 
   @override
@@ -83,7 +88,7 @@ class CommunityScreen extends ConsumerWidget {
                                     child: const Text('Mod Tools'),
                                   )
                                 : OutlinedButton(
-                                    onPressed: () {},
+                                    onPressed: () => joinCommunity(ref, community, context),
                                     style: ElevatedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),
@@ -106,7 +111,21 @@ class CommunityScreen extends ConsumerWidget {
                   ),
                 ];
               },
-              body: const Text('Displaying posts'),
+              body: ref.watch(getCommunityPostsProvider(name)).when(
+                    data: (data) {
+                      return ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final post = data[index];
+                          return PostCard(post: post);
+                        },
+                      );
+                    },
+                    error: (error, stackTrace) {
+                      return ErrorText(error: error.toString());
+                    },
+                    loading: () => const Loader(),
+                  ),
             ),
             error: ((error, stackTrace) => ErrorText(error: error.toString())),
             loading: () => const Loader(),
