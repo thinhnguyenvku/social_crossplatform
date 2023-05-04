@@ -7,7 +7,6 @@ import 'package:social_crossplatform/features/community/controller/community_con
 
 class SearchCommunityDelegate extends SearchDelegate {
   final WidgetRef ref;
-
   SearchCommunityDelegate(this.ref);
 
   @override
@@ -35,18 +34,19 @@ class SearchCommunityDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     return ref.watch(searchCommunityProvider(query)).when(
-          data: (communities) => ListView.builder(
-              itemCount: 1,
-              itemBuilder: (BuildContext context, int index) {
-                final community = communities[index];
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(community.avatar),
-                  ),
-                  title: Text('r/${community.name}'),
-                  onTap: () => navigateToCommunity(context, community.name),
-                );
-              }),
+          data: (communites) => ListView.builder(
+            itemCount: communites.length,
+            itemBuilder: (BuildContext context, int index) {
+              final community = communites[index];
+              return ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(community.avatar),
+                ),
+                title: Text('r/${community.name}'),
+                onTap: () => navigateToCommunity(context, community.name),
+              );
+            },
+          ),
           error: (error, stackTrace) => ErrorText(
             error: error.toString(),
           ),
@@ -55,6 +55,6 @@ class SearchCommunityDelegate extends SearchDelegate {
   }
 
   void navigateToCommunity(BuildContext context, String communityName) {
-    Routemaster.of(context).push('/r/${communityName}');
+    Routemaster.of(context).push('/r/$communityName');
   }
 }

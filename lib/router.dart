@@ -7,7 +7,9 @@ import 'package:social_crossplatform/features/community/screens/create_community
 import 'package:social_crossplatform/features/community/screens/edit_community_screen.dart';
 import 'package:social_crossplatform/features/community/screens/mod_tools_screen.dart';
 import 'package:social_crossplatform/features/home/screens/home_screen.dart';
+import 'package:social_crossplatform/features/post/screens/add_post_screen.dart';
 import 'package:social_crossplatform/features/post/screens/add_post_type_screen.dart';
+import 'package:social_crossplatform/features/post/screens/comments_screen.dart';
 import 'package:social_crossplatform/features/user_profile/screens/edit_user_profile_screen.dart';
 import 'package:social_crossplatform/features/user_profile/screens/user_profile_screen.dart';
 
@@ -54,4 +56,10 @@ final loggedInRoute = RouteMap(routes: {
           type: routeData.pathParameters['type']!,
         ),
       ),
+  '/post/:postId/comments': (routeData) => MaterialPage(
+        child: CommentsScreen(
+          postId: routeData.pathParameters['postId']!,
+        ),
+      ),
+  '/add-post': (routeData) => const MaterialPage(child: AddPostScreen()),
 });

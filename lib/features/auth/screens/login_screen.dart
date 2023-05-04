@@ -4,9 +4,14 @@ import 'package:social_crossplatform/core/common/loader.dart';
 import 'package:social_crossplatform/core/common/sign_in_button.dart';
 import 'package:social_crossplatform/core/constants/constants.dart';
 import 'package:social_crossplatform/features/auth/controller/auth_controller.dart';
+import 'package:social_crossplatform/responsive/responsive.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  void signInAsGuest(WidgetRef ref, BuildContext context){
+    ref.read(authControllerProvider.notifier).signInAsGuest(context);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,7 +24,7 @@ class LoginScreen extends ConsumerWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () => signInAsGuest(ref, context),
             child: const Text(
               'Skip',
               style: TextStyle(
@@ -51,7 +56,7 @@ class LoginScreen extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const SignInButton(),
+                const Responsive(child: SignInButton()),
               ],
             ),
     );
