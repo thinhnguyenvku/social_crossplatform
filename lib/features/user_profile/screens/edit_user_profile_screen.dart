@@ -201,7 +201,7 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
                             padding: const EdgeInsets.all(8.0),
                             child: ListTile(
                               leading: const Icon(Icons.delete_forever_outlined, color: Colors.red),
-                              title: const Text('Delete User'),
+                              title: const Text('Delete Account'),
                               onTap: () =>
                                   deleteUser(user, ref, context),
                             ),

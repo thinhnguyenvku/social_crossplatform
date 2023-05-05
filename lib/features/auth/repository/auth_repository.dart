@@ -1,5 +1,7 @@
+import 'dart:html';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/foundation.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -125,7 +127,10 @@ class AuthRepository {
   }
 
   void logOut() async {
-    await _googleSignIn.signOut();
-    await _auth.signOut();
+    _googleSignIn.signOut();
+    _auth.signOut();
+    firebase_auth.FirebaseAuth.instance.signOut();
+    FirebaseAuth.instance.signOut();
+    window.localStorage.clear(); // Xóa lưu trữ trên trình duyệt
   }
 }
