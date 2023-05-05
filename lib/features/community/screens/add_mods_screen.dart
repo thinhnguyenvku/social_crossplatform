@@ -45,6 +45,7 @@ class _AddModsScreenState extends ConsumerState<AddModsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Select Moderators'),
         actions: [
           IconButton(
             onPressed: saveMods,
@@ -73,7 +74,7 @@ class _AddModsScreenState extends ConsumerState<AddModsScreen> {
                               removeUid(user.uid);
                             }
                           },
-                          title: Text(member),
+                          title: Text(user.name),
                         );
                       },
                       error: (error, stackTrace) => ErrorText(

@@ -1,5 +1,4 @@
 import 'package:any_link_preview/any_link_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
@@ -44,7 +43,7 @@ class PostCard extends ConsumerWidget {
   }
 
   void navigateToCommunity(BuildContext context) {
-    Routemaster.of(context).push('/r/${post.communityName}');
+    Routemaster.of(context).push('/c/${post.communityName}');
   }
 
   void navigateToComments(BuildContext context) {
@@ -102,7 +101,7 @@ class PostCard extends ConsumerWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'r/${post.communityName}',
+                                            'c/${post.communityName}',
                                             style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,

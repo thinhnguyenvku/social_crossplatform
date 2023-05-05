@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:social_crossplatform/core/constants/constants.dart';
@@ -43,8 +42,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
-        centerTitle: false,
+        title: Image.asset(
+          Constants.logoPath,
+          height: 40,
+        ),
+        centerTitle: true,
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Icon(Icons.menu),
@@ -59,12 +61,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             },
             icon: const Icon(Icons.search),
           ),
-          IconButton(
-            onPressed: () {
-              Routemaster.of(context).push('/add-post');
-            },
-            icon: const Icon(Icons.add),
-          ),
+          if (kIsWeb && !isGuest)
+            IconButton(
+              onPressed: () {
+                Routemaster.of(context).push('/add-post');
+              },
+              icon: const Icon(Icons.add),
+            ),
           Builder(builder: (context) {
             return IconButton(
               icon: CircleAvatar(

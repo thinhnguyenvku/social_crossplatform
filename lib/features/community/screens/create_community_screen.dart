@@ -52,12 +52,12 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
                     TextField(
                       controller: communityNameController,
                       decoration: const InputDecoration(
-                        hintText: 'r/community_name',
+                        hintText: 'community_name',
                         filled: true,
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.all(18),
                       ),
-                      maxLength: 21,
+                      maxLength: 100,
                     ),
                     const SizedBox(height: 30),
                     ElevatedButton(

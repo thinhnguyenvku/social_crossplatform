@@ -10,7 +10,6 @@ import 'package:social_crossplatform/core/constants/firebase_constants.dart';
 import 'package:social_crossplatform/core/failure.dart';
 import 'package:social_crossplatform/core/providers/firebase_providers.dart';
 import 'package:social_crossplatform/core/type_defs.dart';
-import 'package:social_crossplatform/features/auth/controller/auth_controller.dart';
 import 'package:social_crossplatform/models/user_model.dart';
 
 final authRepositoryProvider = Provider(

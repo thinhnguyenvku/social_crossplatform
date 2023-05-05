@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:social_crossplatform/core/common/error_text.dart';
 import 'package:social_crossplatform/core/common/loader.dart';
@@ -88,7 +87,7 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
               actions: [
                 TextButton(
                   onPressed: () => save(community),
-                  child: const Text('Save'),
+                  child: const Text('Save', style: TextStyle(fontSize: 20),),
                 ),
               ],
             ),

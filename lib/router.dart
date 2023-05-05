@@ -21,7 +21,7 @@ final loggedInRoute = RouteMap(routes: {
   '/': (_) => const MaterialPage(child: HomeScreen()),
   '/create-community': (_) =>
       const MaterialPage(child: CreateCommunityScreen()),
-  '/r/:name': (route) => MaterialPage(
+  '/c/:name': (route) => MaterialPage(
         child: CommunityScreen(
           name: route.pathParameters['name']!,
         ),
@@ -56,10 +56,11 @@ final loggedInRoute = RouteMap(routes: {
           type: routeData.pathParameters['type']!,
         ),
       ),
-  '/post/:postId/comments': (routeData) => MaterialPage(
+  '/post/:postId/comments': (_) => MaterialPage(
         child: CommentsScreen(
-          postId: routeData.pathParameters['postId']!,
+          postId: _.pathParameters['postId']!,
         ),
       ),
-  '/add-post': (routeData) => const MaterialPage(child: AddPostScreen()),
+  '/add-post': (_) =>
+      const MaterialPage(child: AddPostScreen()),
 });

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:social_crossplatform/core/common/error_text.dart';
 import 'package:social_crossplatform/core/common/loader.dart';
-import 'package:social_crossplatform/core/constants/constants.dart';
 import 'package:social_crossplatform/core/utils.dart';
 import 'package:social_crossplatform/features/community/controller/community_controller.dart';
 import 'package:social_crossplatform/features/post/controller/post_controller.dart';
@@ -102,10 +101,17 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        title: isTypeLink
+            ? const Text('Create A Link Post')
+            : (isTypeImage
+                ? const Text('Create A Image Post')
+                : const Text('Create A Text Post')
+              ),
+        
         actions: [
           TextButton(
             onPressed: sharePost,
-            child: const Text('Share'),
+            child: const Text('Share', style: TextStyle(fontSize: 20),),
           ),
         ],
       ),

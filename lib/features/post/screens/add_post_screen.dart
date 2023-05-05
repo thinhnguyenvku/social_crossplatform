@@ -18,7 +18,11 @@ class AddPostScreen extends ConsumerWidget {
     final currentTheme = ref.watch(themeNotifierProvider);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: kIsWeb
+          ? AppBar(
+              title: const Text('Select Post Type'),
+            )
+          : null,
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,

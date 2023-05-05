@@ -28,7 +28,7 @@ class LoginScreen extends ConsumerWidget {
             child: const Text(
               'Skip',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.bold, fontSize: 20,
               ),
             ),
           )

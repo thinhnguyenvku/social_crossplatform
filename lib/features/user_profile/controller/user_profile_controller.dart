@@ -7,7 +7,6 @@ import 'package:social_crossplatform/core/enums/enums.dart';
 import 'package:social_crossplatform/core/providers/storage_repository_provider.dart';
 import 'package:social_crossplatform/core/utils.dart';
 import 'package:social_crossplatform/features/auth/controller/auth_controller.dart';
-import 'package:social_crossplatform/features/post/controller/post_controller.dart';
 import 'package:social_crossplatform/features/user_profile/repository/user_profile_repository.dart';
 import 'package:social_crossplatform/models/post_model.dart';
 import 'package:social_crossplatform/models/user_model.dart';

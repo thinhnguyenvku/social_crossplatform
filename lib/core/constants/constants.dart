@@ -3,8 +3,8 @@ import 'package:social_crossplatform/features/feed/screens/feed_screen.dart';
 import 'package:social_crossplatform/features/post/screens/add_post_screen.dart';
 
 class Constants {
-  static const logoPath = 'assets/images/logo.png';
-  static const loginEmotePath = 'assets/images/loginEmote.png';
+  static const logoPath = 'assets/images/LOGO33.png';
+  static const loginEmotePath = 'assets/images/LOGO3.png';
   static const googlePath = 'assets/images/google.png';
 
   static const bannerDefault =

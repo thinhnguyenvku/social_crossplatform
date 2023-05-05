@@ -90,7 +90,7 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
               actions: [
                 TextButton(
                   onPressed: save,
-                  child: const Text('Save'),
+                  child: const Text('Save', style: TextStyle(fontSize: 20),),
                 ),
               ],
             ),
