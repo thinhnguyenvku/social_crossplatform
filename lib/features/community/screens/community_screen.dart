@@ -27,6 +27,8 @@ class CommunityScreen extends ConsumerWidget {
         .joinCommunity(community, context);
   }
 
+  
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;

@@ -73,6 +73,13 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
         );
   }
 
+  void deleteCommunity(
+      Community community, WidgetRef ref, BuildContext context) async {
+    ref
+        .read(communityControllerProvider.notifier)
+        .deleteCommunity(community, context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final isLoading = ref.watch(communityControllerProvider);
@@ -87,7 +94,10 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
               actions: [
                 TextButton(
                   onPressed: () => save(community),
-                  child: const Text('Save', style: TextStyle(fontSize: 20),),
+                  child: const Text(
+                    'Save',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ],
             ),
@@ -162,6 +172,15 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
                                   ),
                                 ),
                               ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              leading: const Icon(Icons.delete_forever_outlined, color: Colors.red),
+                              title: const Text('Delete Community'),
+                              onTap: () =>
+                                  deleteCommunity(community, ref, context),
                             ),
                           ),
                         ],

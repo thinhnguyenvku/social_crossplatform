@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:social_crossplatform/core/constants/firebase_constants.dart';
@@ -75,6 +76,19 @@ class PostRepository {
   }
 
   FutureVoid deletePost(Post post) async {
+    var storageImagePost = FirebaseStorage.instance
+        .ref()
+        .child('posts/${post.communityName}/${post.id}');
+    storageImagePost.delete();
+
+    var comments = await FirebaseFirestore.instance
+        .collection('comments')
+        .where('postId', isEqualTo: post.id)
+        .get();
+    for (var comment in comments.docs) {
+      comment.reference.delete();
+    }
+
     try {
       return right(_posts.doc(post.id).delete());
     } on FirebaseException catch (e) {

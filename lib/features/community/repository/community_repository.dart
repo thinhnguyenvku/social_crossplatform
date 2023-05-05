@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:social_crossplatform/core/constants/firebase_constants.dart';
 import 'package:social_crossplatform/core/failure.dart';
 import 'package:social_crossplatform/core/providers/firebase_providers.dart';
 import 'package:social_crossplatform/core/type_defs.dart';
+import 'package:social_crossplatform/models/comment_model.dart';
 import 'package:social_crossplatform/models/community_model.dart';
 import 'package:social_crossplatform/models/post_model.dart';
 
@@ -100,6 +102,46 @@ class CommunityRepository {
     }
   }
 
+  FutureVoid deleteCommunity(Community community) async {
+    var storageBanner = FirebaseStorage.instance
+        .ref()
+        .child('communities/banner/${community.name}');
+    storageBanner.delete();
+    var storageAvatar = FirebaseStorage.instance
+        .ref()
+        .child('communities/profile/${community.name}');
+    storageAvatar.delete();
+
+    var postsQuerySnapshot = await FirebaseFirestore.instance
+        .collection('posts')
+        .where('communityName', isEqualTo: community.name)
+        .get();
+    for (var postDoc in postsQuerySnapshot.docs) {
+      var commentsQuerySnapshot = await FirebaseFirestore.instance
+          .collection('comments')
+          .where('postId', isEqualTo: postDoc.id)
+          .get();
+      for (var commentDoc in commentsQuerySnapshot.docs) {
+        await commentDoc.reference.delete();
+      }
+      var postImageRef = FirebaseStorage.instance
+          .ref()
+          .child('posts/${community.name}/${postDoc.id}');
+      postImageRef.delete();
+    }
+    for (var postDoc in postsQuerySnapshot.docs) {
+      postDoc.reference.delete();
+    }
+
+    try {
+      return right(_communities.doc(community.name).delete());
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
   Stream<List<Community>> searchCommunity(String query) {
     return _communities
         .where(
@@ -126,7 +168,7 @@ class CommunityRepository {
   FutureVoid addMods(String communityName, List<String> uids) async {
     try {
       return right(_communities.doc(communityName).update({
-        'mods' : uids,
+        'mods': uids,
       }));
     } on FirebaseException catch (e) {
       throw e.message!;

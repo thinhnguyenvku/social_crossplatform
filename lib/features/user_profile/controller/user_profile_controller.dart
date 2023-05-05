@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -103,6 +104,14 @@ class UserProfileController extends StateNotifier<bool> {
     res.fold(
       (l) => null,
       (r) => _ref.read(userProvider.notifier).update((state) => user),
+    );
+  }
+
+  void deleteUser(UserModel user, BuildContext context) async {
+    final res = await _userProfileRepository.deleteUser(user);
+    res.fold(
+      (l) => null,
+      (r) => Routemaster.of(context).pop(),
     );
   }
 }

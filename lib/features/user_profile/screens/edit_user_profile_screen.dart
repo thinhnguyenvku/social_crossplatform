@@ -10,6 +10,7 @@ import 'package:social_crossplatform/core/constants/constants.dart';
 import 'package:social_crossplatform/core/utils.dart';
 import 'package:social_crossplatform/features/auth/controller/auth_controller.dart';
 import 'package:social_crossplatform/features/user_profile/controller/user_profile_controller.dart';
+import 'package:social_crossplatform/models/user_model.dart';
 import 'package:social_crossplatform/responsive/responsive.dart';
 import 'package:social_crossplatform/theme/pallete.dart';
 
@@ -49,9 +50,15 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
     final res = await pickImage();
 
     if (res != null) {
-      setState(() {
-        bannerFile = File(res.files.first.path!);
-      });
+      if (kIsWeb) {
+        setState(() {
+          bannerWebFile = res.files.first.bytes;
+        });
+      } else {
+        setState(() {
+          bannerFile = File(res.files.first.path!);
+        });
+      }
     }
   }
 
@@ -59,9 +66,15 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
     final res = await pickImage();
 
     if (res != null) {
-      setState(() {
-        profileFile = File(res.files.first.path!);
-      });
+      if (kIsWeb) {
+        setState(() {
+          profileWebFile = res.files.first.bytes;
+        });
+      } else {
+        setState(() {
+          profileFile = File(res.files.first.path!);
+        });
+      }
     }
   }
 
@@ -74,6 +87,13 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
           context: context,
           name: nameController.text.trim(),
         );
+  }
+
+  void deleteUser(
+      UserModel user, WidgetRef ref, BuildContext context) async {
+    ref
+        .read(userProfileControllerProvider.notifier)
+        .deleteUser(user, context);
   }
 
   @override
@@ -175,6 +195,15 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
                               ),
                               border: InputBorder.none,
                               contentPadding: const EdgeInsets.all(18),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              leading: const Icon(Icons.delete_forever_outlined, color: Colors.red),
+                              title: const Text('Delete User'),
+                              onTap: () =>
+                                  deleteUser(user, ref, context),
                             ),
                           ),
                         ],

@@ -154,6 +154,14 @@ class CommunityController extends StateNotifier<bool> {
     );
   }
 
+  void deleteCommunity(Community community, BuildContext context) async {
+    final res = await _communityRepository.deleteCommunity(community);
+    res.fold(
+      (l) => null,
+      (r) => Routemaster.of(context).pop(),
+    );
+  }
+
   Stream<List<Community>> searchCommunity(String query) {
     return _communityRepository.searchCommunity(query);
   }

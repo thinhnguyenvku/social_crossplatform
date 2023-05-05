@@ -51,13 +51,14 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
                     const SizedBox(height: 10),
                     TextField(
                       controller: communityNameController,
+                      
                       decoration: const InputDecoration(
                         hintText: 'community_name',
                         filled: true,
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.all(18),
                       ),
-                      maxLength: 100,
+                      maxLength: 50,
                     ),
                     const SizedBox(height: 30),
                     ElevatedButton(
