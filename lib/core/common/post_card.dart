@@ -121,14 +121,21 @@ class PostCard extends ConsumerWidget {
                                     ),
                                   ],
                                 ),
-                                if (post.uid == user.uid)
+                                Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                                Row(children: [if (post.uid == user.uid)
                                   IconButton(
                                     onPressed: () => deletePost(ref, context),
                                     icon: Icon(
-                                      Icons.delete,
+                                      Icons.delete_forever_outlined,
                                       color: Pallete.redColor,
                                     ),
-                                  ),
+                                  ),],),
+                                Row(children: [Text(post.createdAt.toString()),],)
+                                
+                              ],
+                            ),
                               ],
                             ),
                             if (post.awards.isNotEmpty) ...[
@@ -201,7 +208,7 @@ class PostCard extends ConsumerWidget {
                                           ? () {}
                                           : () => upvotePost(ref),
                                       icon: Icon(
-                                        Constants.up,
+                                        Icons.thumb_up_alt_outlined,
                                         size: 30,
                                         color: post.upvotes.contains(user.uid)
                                             ? Pallete.blueColor
@@ -217,7 +224,7 @@ class PostCard extends ConsumerWidget {
                                           ? () {}
                                           : () => downvotePost(ref),
                                       icon: Icon(
-                                        Constants.down,
+                                        Icons.thumb_down_alt_outlined,
                                         size: 30,
                                         color: post.downvotes.contains(user.uid)
                                             ? Pallete.redColor
