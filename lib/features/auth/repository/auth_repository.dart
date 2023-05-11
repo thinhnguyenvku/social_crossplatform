@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
@@ -131,6 +130,5 @@ class AuthRepository {
     _auth.signOut();
     firebase_auth.FirebaseAuth.instance.signOut();
     FirebaseAuth.instance.signOut();
-    window.localStorage.clear(); // Xóa lưu trữ trên trình duyệt
   }
 }

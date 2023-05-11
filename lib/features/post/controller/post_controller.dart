@@ -229,6 +229,7 @@ class PostController extends StateNotifier<bool> {
       text: text,
       createdAt: DateTime.now(),
       postId: post.id,
+      uid: user.uid,
       username: user.name,
       profilePic: user.profilePic,
     );
@@ -237,6 +238,14 @@ class PostController extends StateNotifier<bool> {
         .read(userProfileControllerProvider.notifier)
         .updateUserKarma(UserKarma.comment);
     res.fold((l) => showSnackBar(context, l.message), (r) => null);
+  }
+
+  void deleteComment(Comment comment, BuildContext context) async {
+    final res = await _postRepository.deleteComment(comment);
+    res.fold(
+          (l) => null,
+          (r) => showSnackBar(context, 'Comment deleted successfully!'),
+    );
   }
 
   void awardPost({

@@ -94,7 +94,19 @@ class CommunityRepository {
 
   FutureVoid editCommunity(Community community) async {
     try {
-      return right(_communities.doc(community.name).update(community.toMap()));
+      final doc = _communities.doc(community.name);
+      final newAvatar = community.avatar;
+      final querySnapshot =
+          await _posts.where('communityName', isEqualTo: community.name).get();
+      final batch = _firestore.batch();
+      for (final doc in querySnapshot.docs) {
+        batch.update(doc.reference, {'communityProfilePic': newAvatar});
+      }
+      await batch.commit();
+
+      await doc.update(community.toMap());
+
+      return right(null);
     } on FirebaseException catch (e) {
       throw e.message!;
     } catch (e) {

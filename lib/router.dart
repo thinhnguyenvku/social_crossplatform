@@ -19,11 +19,11 @@ final loggedOutRoute = RouteMap(routes: {
 
 final loggedInRoute = RouteMap(routes: {
   '/': (_) => const MaterialPage(child: HomeScreen()),
-  '/create-community': (_) =>
+  '/create-community': (routeData) =>
       const MaterialPage(child: CreateCommunityScreen()),
-  '/c/:name': (route) => MaterialPage(
+  '/c/:name': (routeData) => MaterialPage(
         child: CommunityScreen(
-          name: route.pathParameters['name']!,
+          name: routeData.pathParameters['name']!,
         ),
       ),
   '/mod-tools/:name': (routeData) => MaterialPage(
@@ -56,11 +56,11 @@ final loggedInRoute = RouteMap(routes: {
           type: routeData.pathParameters['type']!,
         ),
       ),
-  '/post/:postId/comments': (_) => MaterialPage(
+  '/post/:postId/comments': (routeData) => MaterialPage(
         child: CommentsScreen(
-          postId: _.pathParameters['postId']!,
+          postId: routeData.pathParameters['postId']!,
         ),
       ),
-  '/add-post': (_) =>
+  '/add-post': (routeData) =>
       const MaterialPage(child: AddPostScreen()),
 });

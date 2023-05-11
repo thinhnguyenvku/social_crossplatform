@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
@@ -27,8 +28,6 @@ class CommunityScreen extends ConsumerWidget {
         .joinCommunity(community, context);
   }
 
-  
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
@@ -40,7 +39,7 @@ class CommunityScreen extends ConsumerWidget {
               headerSliverBuilder: (context, innerBoxIsScrolled) {
                 return [
                   SliverAppBar(
-                    expandedHeight: 150,
+                    expandedHeight: 250,
                     floating: true,
                     snap: true,
                     flexibleSpace: Stack(
@@ -78,38 +77,49 @@ class CommunityScreen extends ConsumerWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            if (!isGuest)
+                            if (!isGuest && kIsWeb)
                               community.mods.contains(user.uid)
                                   ? OutlinedButton(
-                                      onPressed: () {
-                                        navigateToModTools(context);
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 25),
-                                      ),
-                                      child: const Text('Mod Tools'),
-                                    )
+                                onPressed: () {
+                                  navigateToModTools(context);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(20),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25),
+                                ),
+                                child: const Text(
+                                  'Mod Tools',
+                                  style: TextStyle(
+
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              )
                                   : OutlinedButton(
-                                      onPressed: () => joinCommunity(
-                                          ref, community, context),
-                                      style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 25),
-                                      ),
-                                      child: Text(
-                                          community.members.contains(user.uid)
-                                              ? 'Joined'
-                                              : 'Join'),
-                                    ),
+                                onPressed: () => joinCommunity(
+                                    ref, community, context),
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(20),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25),
+                                ),
+                                child: Text(
+                                  community.members.contains(user.uid)
+                                      ? 'Leave'
+                                      : 'Join',
+                                  style: TextStyle(
+
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                         Padding(
@@ -118,6 +128,51 @@ class CommunityScreen extends ConsumerWidget {
                             '${community.members.length} members',
                           ),
                         ),
+
+                        if (!isGuest && !kIsWeb)
+                          community.mods.contains(user.uid)
+                              ? OutlinedButton(
+                            onPressed: () {
+                              navigateToModTools(context);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(20),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 25),
+                            ),
+                            child: const Text(
+                              'Mod Tools',
+                              style: TextStyle(
+
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                              : OutlinedButton(
+                            onPressed: () => joinCommunity(
+                                ref, community, context),
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(20),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 25),
+                            ),
+                            child: Text(
+                              community.members.contains(user.uid)
+                                  ? 'Leave'
+                                  : 'Join',
+                              style: TextStyle(
+
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+
                       ]),
                     ),
                   ),

@@ -22,6 +22,8 @@ class UserProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final users = ref.watch(userProvider)!;
+
     return Scaffold(
       body: ref.watch(getUserDataProvider(uid)).when(
             data: (user) => NestedScrollView(
@@ -48,21 +50,34 @@ class UserProfileScreen extends ConsumerWidget {
                             radius: 45,
                           ),
                         ),
-                        Container(
-                          alignment: Alignment.bottomLeft,
-                          padding: const EdgeInsets.all(20),
-                          child: OutlinedButton(
-                            onPressed: () => navigateToEditUserProfile(context),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
+                        ref.watch(getUserDataProvider(users.uid)).when(
+                              data: (data) {
+                                if (data.uid == uid) {
+                                  return Container(
+                                    alignment: Alignment.bottomLeft,
+                                    padding: const EdgeInsets.all(20),
+                                    child: OutlinedButton(
+                                      onPressed: () =>
+                                          navigateToEditUserProfile(context),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 25),
+                                      ),
+                                      child: const Text('Edit Profile'),
+                                    ),
+                                  );
+                                } else {
+                                  return const SizedBox();
+                                }
+                              },
+                              error: (error, stackTrace) =>
+                                  ErrorText(error: error.toString()),
+                              loading: () => const Loader(),
                             ),
-                            child: const Text('Edit Profile'),
-                          ),
-                        ),
                       ],
                     ),
                   ),

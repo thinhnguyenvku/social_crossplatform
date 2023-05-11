@@ -155,6 +155,30 @@ class PostRepository {
     }
   }
 
+  FutureVoid deleteComment(Comment comment) async {
+    final commentRef =
+    FirebaseFirestore.instance.collection('comments').doc(comment.id);
+
+    final postRef =
+    FirebaseFirestore.instance.collection('posts').doc(comment.postId);
+    final postDoc = await postRef.get();
+    final currentCommentCount = postDoc.data()!['commentCount'];
+
+    final batch = FirebaseFirestore.instance.batch();
+    batch.delete(commentRef);
+    batch.update(postRef, {'commentCount': currentCommentCount - 1});
+
+    try {
+      await batch.commit();
+      return right(null);
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
+
   Stream<List<Comment>> getCommentsOfPost(String postId) {
     return _comments
         .where('postId', isEqualTo: postId)

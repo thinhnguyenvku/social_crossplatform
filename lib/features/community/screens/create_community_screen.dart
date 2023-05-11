@@ -58,7 +58,7 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.all(18),
                       ),
-                      maxLength: 50,
+                      maxLength: 25,
                     ),
                     const SizedBox(height: 30),
                     ElevatedButton(

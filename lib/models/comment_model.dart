@@ -1,15 +1,17 @@
 class Comment {
-    final String id;
-    final String text;
-    final DateTime createdAt;
-    final String postId;
-    final String username;
-    final String profilePic;
+  final String id;
+  final String text;
+  final DateTime createdAt;
+  final String postId;
+  final String uid;
+  final String username;
+  final String profilePic;
   Comment({
     required this.id,
     required this.text,
     required this.createdAt,
     required this.postId,
+    required this.uid,
     required this.username,
     required this.profilePic,
   });
@@ -19,6 +21,7 @@ class Comment {
     String? text,
     DateTime? createdAt,
     String? postId,
+    String? uid,
     String? username,
     String? profilePic,
   }) {
@@ -27,6 +30,7 @@ class Comment {
       text: text ?? this.text,
       createdAt: createdAt ?? this.createdAt,
       postId: postId ?? this.postId,
+      uid: uid ?? this.uid,
       username: username ?? this.username,
       profilePic: profilePic ?? this.profilePic,
     );
@@ -38,6 +42,7 @@ class Comment {
       'text': text,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'postId': postId,
+      'uid': uid,
       'username': username,
       'profilePic': profilePic,
     };
@@ -49,6 +54,7 @@ class Comment {
       text: map['text'] as String,
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
       postId: map['postId'] as String,
+      uid: map['uid'] as String,
       username: map['username'] as String,
       profilePic: map['profilePic'] as String,
     );
@@ -56,29 +62,30 @@ class Comment {
 
   @override
   String toString() {
-    return 'Comment(id: $id, text: $text, createdAt: $createdAt, postId: $postId, username: $username, profilePic: $profilePic)';
+    return 'Comment(id: $id, text: $text, createdAt: $createdAt, postId: $postId, uid: $uid, username: $username, profilePic: $profilePic)';
   }
 
   @override
   bool operator ==(covariant Comment other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.text == text &&
-      other.createdAt == createdAt &&
-      other.postId == postId &&
-      other.username == username &&
-      other.profilePic == profilePic;
+
+    return other.id == id &&
+        other.text == text &&
+        other.createdAt == createdAt &&
+        other.postId == postId &&
+        other.uid == uid &&
+        other.username == username &&
+        other.profilePic == profilePic;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      text.hashCode ^
-      createdAt.hashCode ^
-      postId.hashCode ^
-      username.hashCode ^
-      profilePic.hashCode;
+        text.hashCode ^
+        createdAt.hashCode ^
+        postId.hashCode ^
+        uid.hashCode ^
+        username.hashCode ^
+        profilePic.hashCode;
   }
 }

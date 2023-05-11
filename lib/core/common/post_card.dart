@@ -11,6 +11,8 @@ import 'package:social_crossplatform/features/post/controller/post_controller.da
 import 'package:social_crossplatform/models/post_model.dart';
 import 'package:social_crossplatform/responsive/responsive.dart';
 import 'package:social_crossplatform/theme/pallete.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter/foundation.dart';
 
 class PostCard extends ConsumerWidget {
   final Post post;
@@ -82,60 +84,71 @@ class PostCard extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () => navigateToCommunity(context),
-                                      child: CircleAvatar(
-                                        backgroundImage: NetworkImage(
-                                            post.communityProfilePic),
-                                        radius: 16,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'c/${post.communityName}',
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          GestureDetector(
-                                            onTap: () =>
-                                                navigateToUser(context),
-                                            child: Text(
-                                              'u/${post.username}',
-                                              style:
-                                                  const TextStyle(fontSize: 12),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                                GestureDetector(
+                                  onTap: () => navigateToCommunity(context),
+                                  child: CircleAvatar(
+                                    backgroundImage:
+                                        NetworkImage(post.communityProfilePic),
+                                    radius: 16,
+                                  ),
                                 ),
-                                Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                                Row(children: [if (post.uid == user.uid)
-                                  IconButton(
-                                    onPressed: () => deletePost(ref, context),
-                                    icon: Icon(
-                                      Icons.delete_forever_outlined,
-                                      color: Pallete.redColor,
+                                SizedBox(width: 8),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'c/${post.communityName}',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      GestureDetector(
+                                        onTap: () => navigateToUser(context),
+                                        child: Text(
+                                          'u/${post.username}',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey[600],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        DateFormat('dd-MM-yyyy HH:mm:ss')
+                                            .format(post.createdAt),
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.grey[600],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                ref.watch(getUserDataProvider(user.uid)).when(
+                                      data: (data) {
+                                        if (data.uid == post.uid) {
+                                          return IconButton(
+                                            onPressed: () =>
+                                                deletePost(ref, context),
+                                            icon: const Icon(
+                                              Icons.delete_forever_outlined,
+                                              color: Colors.red,
+                                            ),
+                                          );
+                                        }
+                                        return const SizedBox();
+                                      },
+                                      error: (error, stackTrace) =>
+                                          ErrorText(error: error.toString()),
+                                      loading: () => const Loader(),
                                     ),
-                                  ),],),
-                                Row(children: [Text(post.createdAt.toString()),],)
-                                
-                              ],
-                            ),
                               ],
                             ),
                             if (post.awards.isNotEmpty) ...[
@@ -166,10 +179,20 @@ class PostCard extends ConsumerWidget {
                                 ),
                               ),
                             ),
-                            if (isTypeImage)
+                            if (isTypeImage && kIsWeb)
                               SizedBox(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.35,
+                            MediaQuery.of(context).size.height * 0.40,
+                                width: double.infinity,
+                                child: Image.network(
+                                  post.link!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            if (isTypeImage && !kIsWeb)
+                              SizedBox(
+                                height:
+                                MediaQuery.of(context).size.height * 0.28,
                                 width: double.infinity,
                                 child: Image.network(
                                   post.link!,

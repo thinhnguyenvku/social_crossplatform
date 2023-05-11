@@ -6,11 +6,8 @@ class Constants {
   static const logoPath = 'assets/images/LOGO33.png';
   static const loginEmotePath = 'assets/images/LOGO3.png';
   static const googlePath = 'assets/images/google.png';
-
-  static const bannerDefault =
-      'https://thumbs.dreamstime.com/b/abstract-stained-pattern-rectangle-background-blue-sky-over-fiery-red-orange-color-modern-painting-art-watercolor-effe-texture-123047399.jpg';
-  static const avatarDefault =
-      'https://external-preview.redd.it/5kh5OreeLd85QsqYO1Xz_4XSLYwZntfjqou-8fyBFoE.png?auto=webp&s=dbdabd04c399ce9c761ff899f5d38656d1de87c2';
+  static const bannerDefault = 'assets/images/bannerDefault.jpg';
+  static const avatarDefault = 'assets/images/avatarDefault.png';
 
   static const tabWidgets = [
     FeedScreen(),
