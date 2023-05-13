@@ -1,9 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:social_crossplatform/features/community/controller/community_controller.dart';
-import 'package:social_crossplatform/models/community_model.dart';
 
 class ModToolsScreen extends StatelessWidget {
   final String name;

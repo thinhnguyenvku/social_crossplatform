@@ -85,7 +85,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ? null
           : CupertinoTabBar(
               activeColor: currentTheme.iconTheme.color,
-              backgroundColor: currentTheme.backgroundColor,
+              backgroundColor: currentTheme.colorScheme.background,
               items: const [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),

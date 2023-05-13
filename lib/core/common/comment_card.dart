@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:routemaster/routemaster.dart';
 import 'package:social_crossplatform/core/common/error_text.dart';
 import 'package:social_crossplatform/core/common/loader.dart';
 import 'package:social_crossplatform/features/auth/controller/auth_controller.dart';
 import 'package:social_crossplatform/features/post/controller/post_controller.dart';
 import 'package:social_crossplatform/models/comment_model.dart';
-import 'package:social_crossplatform/models/post_model.dart';
 import 'package:social_crossplatform/responsive/responsive.dart';
 
 class CommentCard extends ConsumerWidget {
@@ -80,11 +78,10 @@ class CommentCard extends ConsumerWidget {
                               const Text('Delete'),
                             ],
                           );
-
-                        }else {
+                        } else {
                           return const SizedBox();
                         }
-                },
+                      },
                       error: (error, stackTrace) =>
                           ErrorText(error: error.toString()),
                       loading: () => const Loader(),

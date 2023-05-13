@@ -30,6 +30,7 @@ class Pallete {
       backgroundColor: drawerColor,
     ),
     primaryColor: redColor,
+    // ignore: deprecated_member_use
     backgroundColor:
         drawerColor, // will be used as alternative background color
   );
@@ -48,6 +49,7 @@ class Pallete {
       backgroundColor: whiteColor,
     ),
     primaryColor: redColor,
+    // ignore: deprecated_member_use
     backgroundColor: whiteColor,
   );
 }
@@ -80,7 +82,7 @@ class ThemeNotifier extends StateNotifier<ThemeData> {
   void toggleTheme() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (_mode == ThemeMode.dark) {
-       _mode = ThemeMode.light;
+      _mode = ThemeMode.light;
       state = Pallete.lightModeAppTheme;
       prefs.setString('theme', 'light');
     } else {

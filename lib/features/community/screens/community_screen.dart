@@ -80,46 +80,44 @@ class CommunityScreen extends ConsumerWidget {
                             if (!isGuest && kIsWeb)
                               community.mods.contains(user.uid)
                                   ? OutlinedButton(
-                                onPressed: () {
-                                  navigateToModTools(context);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(20),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 25),
-                                ),
-                                child: const Text(
-                                  'Mod Tools',
-                                  style: TextStyle(
-
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              )
+                                      onPressed: () {
+                                        navigateToModTools(context);
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 25),
+                                      ),
+                                      child: const Text(
+                                        'Mod Tools',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )
                                   : OutlinedButton(
-                                onPressed: () => joinCommunity(
-                                    ref, community, context),
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(20),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 25),
-                                ),
-                                child: Text(
-                                  community.members.contains(user.uid)
-                                      ? 'Leave'
-                                      : 'Join',
-                                  style: TextStyle(
-
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
+                                      onPressed: () => joinCommunity(
+                                          ref, community, context),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 25),
+                                      ),
+                                      child: Text(
+                                        community.members.contains(user.uid)
+                                            ? 'Leave'
+                                            : 'Join',
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
                           ],
                         ),
                         Padding(
@@ -128,51 +126,45 @@ class CommunityScreen extends ConsumerWidget {
                             '${community.members.length} members',
                           ),
                         ),
-
                         if (!isGuest && !kIsWeb)
                           community.mods.contains(user.uid)
                               ? OutlinedButton(
-                            onPressed: () {
-                              navigateToModTools(context);
-                            },
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(20),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 25),
-                            ),
-                            child: const Text(
-                              'Mod Tools',
-                              style: TextStyle(
-
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          )
+                                  onPressed: () {
+                                    navigateToModTools(context);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 25),
+                                  ),
+                                  child: const Text(
+                                    'Mod Tools',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )
                               : OutlinedButton(
-                            onPressed: () => joinCommunity(
-                                ref, community, context),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(20),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 25),
-                            ),
-                            child: Text(
-                              community.members.contains(user.uid)
-                                  ? 'Leave'
-                                  : 'Join',
-                              style: TextStyle(
-
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-
+                                  onPressed: () =>
+                                      joinCommunity(ref, community, context),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 25),
+                                  ),
+                                  child: Text(
+                                    community.members.contains(user.uid)
+                                        ? 'Leave'
+                                        : 'Join',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
                       ]),
                     ),
                   ),

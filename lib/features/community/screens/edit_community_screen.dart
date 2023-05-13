@@ -87,7 +87,7 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
 
     return ref.watch(getCommunityByNameProvider(widget.name)).when(
           data: (community) => Scaffold(
-            backgroundColor: currentTheme.backgroundColor,
+            backgroundColor: currentTheme.colorScheme.background,
             appBar: AppBar(
               title: const Text('Edit Community'),
               centerTitle: false,
@@ -120,7 +120,7 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
                                     dashPattern: const [10, 4],
                                     strokeCap: StrokeCap.round,
                                     color: currentTheme
-                                        .textTheme.bodyText2!.color!,
+                                        .textTheme.bodyMedium!.color!,
                                     child: Container(
                                       width: double.infinity,
                                       height: 150,
@@ -177,7 +177,8 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ListTile(
-                              leading: const Icon(Icons.delete_forever_outlined, color: Colors.red),
+                              leading: const Icon(Icons.delete_forever_outlined,
+                                  color: Colors.red),
                               title: const Text('Delete Community'),
                               onTap: () =>
                                   deleteCommunity(community, ref, context),

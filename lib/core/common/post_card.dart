@@ -95,7 +95,7 @@ class PostCard extends ConsumerWidget {
                                     radius: 16,
                                   ),
                                 ),
-                                SizedBox(width: 8),
+                                const SizedBox(width: 8),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
@@ -103,12 +103,12 @@ class PostCard extends ConsumerWidget {
                                     children: [
                                       Text(
                                         'c/${post.communityName}',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      SizedBox(height: 4),
+                                      const SizedBox(height: 4),
                                       GestureDetector(
                                         onTap: () => navigateToUser(context),
                                         child: Text(
@@ -119,7 +119,7 @@ class PostCard extends ConsumerWidget {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(height: 4),
+                                      const SizedBox(height: 4),
                                       Text(
                                         DateFormat('dd-MM-yyyy HH:mm:ss')
                                             .format(post.createdAt),
@@ -182,7 +182,7 @@ class PostCard extends ConsumerWidget {
                             if (isTypeImage && kIsWeb)
                               SizedBox(
                                 height:
-                            MediaQuery.of(context).size.height * 0.40,
+                                    MediaQuery.of(context).size.height * 0.40,
                                 width: double.infinity,
                                 child: Image.network(
                                   post.link!,
@@ -192,7 +192,7 @@ class PostCard extends ConsumerWidget {
                             if (isTypeImage && !kIsWeb)
                               SizedBox(
                                 height:
-                                MediaQuery.of(context).size.height * 0.28,
+                                    MediaQuery.of(context).size.height * 0.28,
                                 width: double.infinity,
                                 child: Image.network(
                                   post.link!,

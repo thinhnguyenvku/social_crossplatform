@@ -89,11 +89,8 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
         );
   }
 
-  void deleteUser(
-      UserModel user, WidgetRef ref, BuildContext context) async {
-    ref
-        .read(userProfileControllerProvider.notifier)
-        .deleteUser(user, context);
+  void deleteUser(UserModel user, WidgetRef ref, BuildContext context) async {
+    ref.read(userProfileControllerProvider.notifier).deleteUser(user, context);
   }
 
   @override
@@ -104,20 +101,23 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
     return ref.watch(getUserDataProvider(widget.uid)).when(
           data: (user) => Scaffold(
             appBar: AppBar(
-              backgroundColor: currentTheme.backgroundColor,
+              backgroundColor: currentTheme.colorScheme.background,
               title: const Text('Edit Profile'),
               centerTitle: false,
               actions: [
                 TextButton(
                   onPressed: save,
-                  child: const Text('Save', style: TextStyle(fontSize: 20),),
+                  child: const Text(
+                    'Save',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ],
             ),
             body: isLoading
                 ? const Loader()
                 : Responsive(
-                  child: Padding(
+                    child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
@@ -132,8 +132,8 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
                                     radius: const Radius.circular(10),
                                     dashPattern: const [10, 4],
                                     strokeCap: StrokeCap.round,
-                                    color:
-                                        currentTheme.textTheme.bodyText2!.color!,
+                                    color: currentTheme
+                                        .textTheme.bodyMedium!.color!,
                                     child: Container(
                                       width: double.infinity,
                                       height: 150,
@@ -146,10 +146,12 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
                                               ? Image.file(bannerFile!)
                                               : user.banner.isEmpty ||
                                                       user.banner ==
-                                                          Constants.bannerDefault
+                                                          Constants
+                                                              .bannerDefault
                                                   ? const Center(
                                                       child: Icon(
-                                                        Icons.camera_alt_outlined,
+                                                        Icons
+                                                            .camera_alt_outlined,
                                                         size: 40,
                                                       ),
                                                     )
@@ -175,8 +177,8 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
                                                 radius: 32,
                                               )
                                             : CircleAvatar(
-                                                backgroundImage:
-                                                    NetworkImage(user.profilePic),
+                                                backgroundImage: NetworkImage(
+                                                    user.profilePic),
                                                 radius: 32,
                                               ),
                                   ),
@@ -190,7 +192,8 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
                               filled: true,
                               hintText: 'Name',
                               focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.blue),
+                                borderSide:
+                                    const BorderSide(color: Colors.blue),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               border: InputBorder.none,
@@ -200,16 +203,16 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ListTile(
-                              leading: const Icon(Icons.delete_forever_outlined, color: Colors.red),
+                              leading: const Icon(Icons.delete_forever_outlined,
+                                  color: Colors.red),
                               title: const Text('Delete Account'),
-                              onTap: () =>
-                                  deleteUser(user, ref, context),
+                              onTap: () => deleteUser(user, ref, context),
                             ),
                           ),
                         ],
                       ),
                     ),
-                ),
+                  ),
           ),
           loading: () => const Loader(),
           error: (error, stackTrace) => ErrorText(

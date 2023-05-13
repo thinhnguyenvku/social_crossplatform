@@ -105,13 +105,14 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
             ? const Text('Create A Link Post')
             : (isTypeImage
                 ? const Text('Create A Image Post')
-                : const Text('Create A Text Post')
-              ),
-        
+                : const Text('Create A Text Post')),
         actions: [
           TextButton(
             onPressed: sharePost,
-            child: const Text('Share', style: TextStyle(fontSize: 20),),
+            child: const Text(
+              'Share',
+              style: TextStyle(fontSize: 20),
+            ),
           ),
         ],
       ),
@@ -141,7 +142,7 @@ class _AddPostTypeScreenState extends ConsumerState<AddPostTypeScreen> {
                           radius: const Radius.circular(10),
                           dashPattern: const [10, 4],
                           strokeCap: StrokeCap.round,
-                          color: currentTheme.textTheme.bodyText2!.color!,
+                          color: currentTheme.textTheme.bodyMedium!.color!,
                           child: Container(
                             width: double.infinity,
                             height: 150,
