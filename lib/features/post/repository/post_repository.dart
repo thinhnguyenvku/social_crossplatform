@@ -157,10 +157,10 @@ class PostRepository {
 
   FutureVoid deleteComment(Comment comment) async {
     final commentRef =
-    FirebaseFirestore.instance.collection('comments').doc(comment.id);
+        FirebaseFirestore.instance.collection('comments').doc(comment.id);
 
     final postRef =
-    FirebaseFirestore.instance.collection('posts').doc(comment.postId);
+        FirebaseFirestore.instance.collection('posts').doc(comment.postId);
     final postDoc = await postRef.get();
     final currentCommentCount = postDoc.data()!['commentCount'];
 
@@ -177,7 +177,6 @@ class PostRepository {
       return left(Failure(e.toString()));
     }
   }
-
 
   Stream<List<Comment>> getCommentsOfPost(String postId) {
     return _comments

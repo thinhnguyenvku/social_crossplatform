@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "fanzonebot-dqcs",
+  "private_key_id": "8713fe5dc8e2b84f007f6457155eeb2f5c439f87",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQDpYAFnY67kjcRS\nIGRyvBnblU1Sh2+tN7/o2aWv6WXBmSb2PYla4XOhKtKsNIW3Zv0K/ZY5Gb+ooEz3\nbp0DGuL5CAAG+wQx9zQcj1cCc88EdGod7NojUgAK2I0l0herYSkXYy7vaaUKt3dU\nrtT1jXQCI+ci+KtwBnkOM4aA+SoPLXImUM2OgZYzydnpBOVS2QzH3qQ9aAbBhV6v\ncRoTbQXX+vOUv5o8aoM4hGcCTRAh6ksD8wq9t1LhrhEZm1dObQu5zKqoN9sBUb58\nIeVHJmtl0w5ZlD4w90d3xoybYEN3uh2i1wbkq4NXJic2ZlahhYnAry4VJCrrpXuX\nYWJlmvO7AgMBAAECgf8E7dwVS+WmENUNouE1s3xsSPLXH9x5D6h9NQvoRKk1mbzu\njRZr8jTSqo88rEgjgl44oO9WUeiCKuVuAwVP+SIpNVYbCbE4u6/kiPiWqz9/57Sm\ntR6B/MsiEzC8d657MudsMAfSY216VCDABUHwwdcT/0dUYwRhdCjAfvIgFqo4MUfF\nvblZ0EZW6xgGezGkgEklOpL8xcaH6VYNSqw3Sao9Qc8EGgqdwoMcXvP+4ZhevQGu\npZXag4yigODrEgwx8Rd5woiQQzv9MYgmFf9NLxCWnfX3Kpwxo4cgR74V/c4bbvdc\nWjSSocZfsQCnrNdxYgZkgQQG+7AMSnFb1jMagNUCgYEA9naLvmk0ntf3thL2ropd\niF+UGugxMFGUMMCDfLVhLL5Iedd2TUelb1nO9XHRfuILQZdtELL29F/kZZIZNgfA\nqmRYvDlP956BJ0zeCqol/Fxec8KZwFLRO6rcQaSeWqR/8ELQ/ZhtZ4SO+Iw8WL3N\na+yrlfZN1mm0LyOQEzliH/cCgYEA8mfPVHUWqv5aDC83PjrxXEDLh1XyZW1tUMVi\nvJ42UPEsYnI8QIxmfw9gvKB9fjGcJPiqSy6Ae3tMtZM9IzQpmD5k7OB/AodWOD7d\nWqsEo5Nkq3J/DobMN3C/+ZT35/W/veJncxmj77Xgg0FYKHcVHz+5dfJgv+ONoyGn\nN089oV0CgYBX+S6ec+0deddovVIiMS97uyohhJnyNlxgHoeQnymlj/JM03Td1uId\nYgA2qj7uPH9qFUQP/uGZjxT2kHTBTXkfGRx3azm5GHHfdleXlO5kKxBn36GD/cvD\nsZRXNgx0LF2ihCcXLi53EeD6pQvxXSaTDHKe38Ee9LIlVVtbEVOONwKBgCHVIVfd\nW8OT6oeG04QJAATrOjzyXvmPE1HRqt0+i8AyWQqIfSZZMjkLsWnCUKGbVPrIBiSm\nIeKaK/Ov0DmonyGTm8x/7Noyf3MsOwLbmbMm8EcJnPgvEjOuteykwREL+K4M+nlT\nG9FqJiLLrP1A2Z7Z6w2uPZiqrusU2Fzc33I1AoGBANSyRaFobRFe3Q66Ni7Q5V5B\nGLqaCi9lAammsb4NQnRLEhVU6aBum7edv445FsE+Dc4naEZKb7eqVVsU13WPKXY+\niigjc9t7dQvBQZSGITxhlP5u0nu6H+SVVjrCM5VnThoGacS9wXXlocfvJlZGvPc+\nqEol5szRHwphBMZ14IKO\n-----END PRIVATE KEY-----\n",
+  "client_email": "fanzonebot@fanzonebot-dqcs.iam.gserviceaccount.com",
+  "client_id": "111067955120583372485",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/fanzonebot%40fanzonebot-dqcs.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

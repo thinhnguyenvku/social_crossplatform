@@ -4,8 +4,6 @@ import 'package:social_crossplatform/core/common/loader.dart';
 import 'package:social_crossplatform/features/community/controller/community_controller.dart';
 import 'package:social_crossplatform/responsive/responsive.dart';
 
-
-
 class CreateCommunityScreen extends ConsumerStatefulWidget {
   const CreateCommunityScreen({super.key});
 
@@ -51,7 +49,6 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
                     const SizedBox(height: 10),
                     TextField(
                       controller: communityNameController,
-                      
                       decoration: const InputDecoration(
                         hintText: 'community_name',
                         filled: true,

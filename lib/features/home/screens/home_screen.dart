@@ -68,6 +68,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               },
               icon: const Icon(Icons.add),
             ),
+
+          IconButton(
+              onPressed: () {
+                Routemaster.of(context).push('/chat-bot');
+              },
+              icon: const Icon(Icons.message_outlined),
+            ),
+          
+
           Builder(builder: (context) {
             return IconButton(
               icon: CircleAvatar(

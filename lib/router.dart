@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:social_crossplatform/features/auth/screens/login_screen.dart';
+import 'package:social_crossplatform/features/chatbot/chat_bot_screen.dart';
 import 'package:social_crossplatform/features/community/screens/add_mods_screen.dart';
 import 'package:social_crossplatform/features/community/screens/community_screen.dart';
 import 'package:social_crossplatform/features/community/screens/create_community_screen.dart';
@@ -14,53 +15,53 @@ import 'package:social_crossplatform/features/user_profile/screens/edit_user_pro
 import 'package:social_crossplatform/features/user_profile/screens/user_profile_screen.dart';
 
 final loggedOutRoute = RouteMap(routes: {
-  '/': (_) => const MaterialPage(child: LoginScreen()),
+  '/': (context) => const MaterialPage(child: LoginScreen()),
 });
 
 final loggedInRoute = RouteMap(routes: {
-  '/': (_) => const MaterialPage(child: HomeScreen()),
-  '/create-community': (routeData) =>
+  '/': (context) => const MaterialPage(child: HomeScreen()),
+  '/create-community': (context) =>
       const MaterialPage(child: CreateCommunityScreen()),
-  '/c/:name': (routeData) => MaterialPage(
+  '/c/:name': (context) => MaterialPage(
         child: CommunityScreen(
-          name: routeData.pathParameters['name']!,
+          name: context.pathParameters['name']!,
         ),
       ),
-  '/mod-tools/:name': (routeData) => MaterialPage(
+  '/mod-tools/:name': (context) => MaterialPage(
         child: ModToolsScreen(
-          name: routeData.pathParameters['name']!,
+          name: context.pathParameters['name']!,
         ),
       ),
-  '/edit-community/:name': (routeData) => MaterialPage(
+  '/edit-community/:name': (context) => MaterialPage(
         child: EditCommunityScreen(
-          name: routeData.pathParameters['name']!,
+          name: context.pathParameters['name']!,
         ),
       ),
-  '/add-mods/:name': (routeData) => MaterialPage(
+  '/add-mods/:name': (context) => MaterialPage(
         child: AddModsScreen(
-          name: routeData.pathParameters['name']!,
+          name: context.pathParameters['name']!,
         ),
       ),
-  '/u/:uid': (routeData) => MaterialPage(
+  '/u/:uid': (context) => MaterialPage(
         child: UserProfileScreen(
-          uid: routeData.pathParameters['uid']!,
+          uid: context.pathParameters['uid']!,
         ),
       ),
-  '/edit-user-profile/:uid': (routeData) => MaterialPage(
+  '/edit-user-profile/:uid': (context) => MaterialPage(
         child: EditUserProfileScreen(
-          uid: routeData.pathParameters['uid']!,
+          uid: context.pathParameters['uid']!,
         ),
       ),
-  '/add-post/:type': (routeData) => MaterialPage(
+  '/add-post/:type': (context) => MaterialPage(
         child: AddPostTypeScreen(
-          type: routeData.pathParameters['type']!,
+          type: context.pathParameters['type']!,
         ),
       ),
-  '/post/:postId/comments': (routeData) => MaterialPage(
+  '/post/:postId/comments': (context) => MaterialPage(
         child: CommentsScreen(
-          postId: routeData.pathParameters['postId']!,
+          postId: context.pathParameters['postId']!,
         ),
       ),
-  '/add-post': (routeData) =>
-      const MaterialPage(child: AddPostScreen()),
+  '/add-post': (context) => const MaterialPage(child: AddPostScreen()),
+  '/chat-bot': (context) => const MaterialPage(child: ChatBotScreen()),
 });

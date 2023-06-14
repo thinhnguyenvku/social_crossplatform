@@ -243,8 +243,8 @@ class PostController extends StateNotifier<bool> {
   void deleteComment(Comment comment, BuildContext context) async {
     final res = await _postRepository.deleteComment(comment);
     res.fold(
-          (l) => null,
-          (r) => showSnackBar(context, 'Comment deleted successfully!'),
+      (l) => null,
+      (r) => showSnackBar(context, 'Comment deleted successfully!'),
     );
   }
 

@@ -180,8 +180,36 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
                               leading: const Icon(Icons.delete_forever_outlined,
                                   color: Colors.red),
                               title: const Text('Delete Community'),
-                              onTap: () =>
-                                  deleteCommunity(community, ref, context),
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text('Confirm Delete'),
+                                      content: const Text(
+                                          'Are you sure you want to delete this community?'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: const Text('Cancel'),
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .pop();
+                                          },
+                                        ),
+                                        TextButton(
+                                          child: const Text('Delete'),
+                                          onPressed: () {
+                                            deleteCommunity(community, ref,
+                                                context);
+                                            Navigator.of(context)
+                                                .pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                             ),
                           ),
                         ],

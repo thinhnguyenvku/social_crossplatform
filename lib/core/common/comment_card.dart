@@ -58,11 +58,6 @@ class CommentCard extends ConsumerWidget {
             ),
             Row(
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.reply),
-                ),
-                const Text('Reply'),
                 ref.watch(getUserDataProvider(user.uid)).when(
                       data: (data) {
                         if (data.uid == comment.uid) {
@@ -71,7 +66,33 @@ class CommentCard extends ConsumerWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: IconButton(
-                                  onPressed: () => deleteComment(ref, context),
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Confirm Delete'),
+                                          content: const Text(
+                                              'Are you sure you want to delete this comment?'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              child: const Text('Cancel'),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: const Text('Delete'),
+                                              onPressed: () {
+                                                deleteComment(ref, context);
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
                                   icon: const Icon(Icons.delete_sweep_outlined),
                                 ),
                               ),
@@ -85,7 +106,7 @@ class CommentCard extends ConsumerWidget {
                       error: (error, stackTrace) =>
                           ErrorText(error: error.toString()),
                       loading: () => const Loader(),
-                    ),
+                    )
               ],
             ),
           ],

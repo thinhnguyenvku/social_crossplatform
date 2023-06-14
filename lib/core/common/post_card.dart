@@ -1,6 +1,8 @@
 import 'package:any_link_preview/any_link_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:social_crossplatform/core/common/error_text.dart';
 import 'package:social_crossplatform/core/common/loader.dart';
@@ -11,8 +13,6 @@ import 'package:social_crossplatform/features/post/controller/post_controller.da
 import 'package:social_crossplatform/models/post_model.dart';
 import 'package:social_crossplatform/responsive/responsive.dart';
 import 'package:social_crossplatform/theme/pallete.dart';
-import 'package:intl/intl.dart';
-import 'package:flutter/foundation.dart';
 
 class PostCard extends ConsumerWidget {
   final Post post;
@@ -135,8 +135,40 @@ class PostCard extends ConsumerWidget {
                                       data: (data) {
                                         if (data.uid == post.uid) {
                                           return IconButton(
-                                            onPressed: () =>
-                                                deletePost(ref, context),
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return AlertDialog(
+                                                    title: const Text(
+                                                        'Confirm Delete'),
+                                                    content: const Text(
+                                                        'Are you sure you want to delete this post?'),
+                                                    actions: <Widget>[
+                                                      TextButton(
+                                                        child: const Text(
+                                                            'Cancel'),
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                      ),
+                                                      TextButton(
+                                                        child: const Text(
+                                                            'Delete'),
+                                                        onPressed: () {
+                                                          deletePost(
+                                                              ref, context);
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            },
                                             icon: const Icon(
                                               Icons.delete_forever_outlined,
                                               color: Colors.red,
@@ -148,7 +180,7 @@ class PostCard extends ConsumerWidget {
                                       error: (error, stackTrace) =>
                                           ErrorText(error: error.toString()),
                                       loading: () => const Loader(),
-                                    ),
+                                    )
                               ],
                             ),
                             if (post.awards.isNotEmpty) ...[
@@ -278,8 +310,40 @@ class PostCard extends ConsumerWidget {
                                       data: (data) {
                                         if (data.mods.contains(user.uid)) {
                                           return IconButton(
-                                            onPressed: () =>
-                                                deletePost(ref, context),
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return AlertDialog(
+                                                    title: const Text(
+                                                        'Confirm Delete'),
+                                                    content: const Text(
+                                                        'Are you sure you want to delete this post?'),
+                                                    actions: <Widget>[
+                                                      TextButton(
+                                                        child: const Text(
+                                                            'Cancel'),
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                      ),
+                                                      TextButton(
+                                                        child: const Text(
+                                                            'Delete'),
+                                                        onPressed: () {
+                                                          deletePost(
+                                                              ref, context);
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            },
                                             icon: const Icon(
                                               Icons.admin_panel_settings,
                                             ),

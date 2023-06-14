@@ -206,7 +206,33 @@ class _EditUserProfileScreenState extends ConsumerState<EditUserProfileScreen> {
                               leading: const Icon(Icons.delete_forever_outlined,
                                   color: Colors.red),
                               title: const Text('Delete Account'),
-                              onTap: () => deleteUser(user, ref, context),
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text('Confirm Delete'),
+                                      content: const Text(
+                                          'Are you sure you want to delete this account?'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: const Text('Cancel'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        TextButton(
+                                          child: const Text('Delete'),
+                                          onPressed: () {
+                                            deleteUser(user, ref, context);
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                             ),
                           ),
                         ],

@@ -31,16 +31,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  dialog_flowtter:
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.8.0
-  firebase_auth: ^4.3.0
-  firebase_storage: ^11.0.16
-  cloud_firestore: ^4.4.5
-  google_sign_in: ^6.0.2
+  firebase_core: ^2.13.0
+  firebase_auth: ^4.6.1
+  firebase_storage: ^11.2.1
+  cloud_firestore: ^4.7.1
+  google_sign_in: ^6.1.0
   flutter_riverpod: ^2.3.2
   fpdart: ^0.5.0
   routemaster: ^1.0.1
@@ -76,11 +77,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+     - assets/
      - assets/images/google.png
      - assets/images/LOGO3.png
      - assets/images/LOGO33.png
-     - assets/images/avatarDefault.png
-     - assets/images/bannerDefault.jpg
      - assets/images/awards/
 
   # An image asset can refer to one or more resolution-specific "variants", see
