@@ -1,3 +1,6 @@
+Đồ án chuyên ngành 1 - Flutter + Firebase - MobileAppAndroid + Website - Việt Hàn (VKU) - Score: 8.5
+
+
 Run Website on Terminal: flutter run -d chrome --web-renderer html
 
 Run App Android with USB Debug Mode.
