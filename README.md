@@ -1,4 +1,4 @@
-Đồ án chuyên ngành 3 - Flutter + Firebase - MobileAppAndroid + Website - Việt Hàn (VKU)
+Đồ án chuyên ngành - Flutter + Firebase + AI Extensions - MobileAppAndroid + Website - Việt Hàn (VKU)
 
 
 Run Website on Terminal: flutter run -d chrome --web-renderer html
