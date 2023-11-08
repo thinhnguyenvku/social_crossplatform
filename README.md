@@ -1,5 +1,9 @@
 Đồ án chuyên ngành - Flutter + Firebase + AI Extensions - MobileAppAndroid + Website - Việt Hàn (VKU)
 
+1. Đồ án chuyên ngành 1
+2. Đồ án chuyên ngành 2
+3. Đồ án chuyên ngành 3
+4. Đồ án môn học Phát triển ứng dụng di động đa nền tảng
 
 Run Website on Terminal: flutter run -d chrome --web-renderer html
 
